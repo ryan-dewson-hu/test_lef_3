@@ -152,6 +152,20 @@ export const DashboardEmbedNext = ({ embedType }) => {
     }
   }
 
+  const runCalcs = () => {
+    if (dashboard) {
+      var firstIMG = document.querySelector('[aria-label="All patients with condition"]').querySelector('span');
+      var val = firstIMG.innerText;
+      console.log(val);
+      var firstIMG2 = document.querySelector('[aria-label="Patients with sub-diagnosis"]').querySelector('span');
+      var val2 = firstIMG2.innerText;
+      console.log(val2);
+      var ratio = (val2/val)*100;
+      console.log(ratio);
+      alert(ratio);
+    }
+  }
+
   return (
     <Page height="100%">
       <Layout hasAside height="100%">
@@ -173,7 +187,14 @@ export const DashboardEmbedNext = ({ embedType }) => {
                 />
               </Space>
             </Box>
-            <EmbedContainer ref={embedCtrRef} />
+            <EmbedContainer ref={embedCtrRef}>
+            <Button
+                  onClick={runCalcs}
+                  disabled={!dashboardId || running}
+                >
+                  Calculate Values
+                </Button>
+            </EmbedContainer>
           </>
         </Section>
         <Aside width="25%" height="100%" pr="small">
